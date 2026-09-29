@@ -393,7 +393,7 @@ function FinalCTA() {
               className="font-serif font-light text-white leading-tight mb-5"
               style={{ fontSize: "clamp(34px, 4.5vw, 60px)" }}
             >
-              Stop leaving appointments on the table.
+              Stop leaving appointments (money) on the table.
             </h2>
             <p className="text-white/45 text-[15px] leading-relaxed">
               We&apos;ll audit your lead sources and response times in 15 minutes.
