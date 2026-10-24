@@ -1,3 +1,7 @@
+# secrets
+.env
+./env
+
 # dependencies
 node_modules/
 
@@ -10,3 +14,4 @@ out/
 *.pem
 .env*
 !.env.example
+!.env.local
