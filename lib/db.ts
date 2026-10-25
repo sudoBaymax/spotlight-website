@@ -4,12 +4,12 @@ if (!process.env.DATABASE_URL) {
   throw new Error("DATABASE_URL is not set — add it to .env");
 }
 
-// Neon's HTTP driver doesn't support the channel_binding parameter
-// (it's a PostgreSQL wire-protocol option, irrelevant over HTTP).
-// Strip it so the URL parses correctly in all environments.
-const rawUrl = new URL(process.env.DATABASE_URL);
-rawUrl.searchParams.delete("channel_binding");
+// vercel env pull wraps values in quotes — strip them before parsing.
+// Also strip channel_binding which isn't supported by Neon's HTTP driver.
+const clean = process.env.DATABASE_URL.replace(/^["']|["']$/g, "");
+const dbUrl = new URL(clean);
+dbUrl.searchParams.delete("channel_binding");
 
-const sql = neon(rawUrl.toString());
+const sql = neon(dbUrl.toString());
 
 export default sql;
