@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import Link from "next/link";
 import {
   DndContext,
@@ -142,8 +142,9 @@ function FieldCardContent({
         {/* Drag handle */}
         <button
           {...dragHandleProps}
-          className="text-[#444] hover:text-[#888] cursor-grab active:cursor-grabbing flex-shrink-0 transition-colors p-0.5 rounded"
+          className="text-[#666] hover:text-white hover:bg-[#2a2a2a] cursor-grab active:cursor-grabbing flex-shrink-0 transition-colors p-1.5 rounded-md"
           aria-label="Drag to reorder"
+          title="Drag to reorder"
           onClick={(e) => e.stopPropagation()}
         >
           <DragIcon />
@@ -173,8 +174,9 @@ function FieldCardContent({
           {/* Expand/collapse toggle */}
           <button
             onClick={onToggle}
-            className="text-[#555] hover:text-[#999] transition-colors p-1"
+            className="text-[#aaa] hover:text-white hover:bg-[#2a2a2a] transition-colors p-1.5 rounded-md"
             aria-label={expanded ? "Collapse field" : "Expand field"}
+            title={expanded ? "Collapse" : "Expand"}
           >
             <ChevronIcon open={expanded} />
           </button>
@@ -182,8 +184,9 @@ function FieldCardContent({
           {/* Delete */}
           <button
             onClick={() => onDelete(field.id)}
-            className="text-[#444] hover:text-[#FF2D1A] transition-colors p-1 text-[18px] leading-none"
+            className="text-[#666] hover:text-[#FF2D1A] hover:bg-[#FF2D1A]/10 transition-colors p-1.5 rounded-md text-[18px] leading-none"
             aria-label="Delete field"
+            title="Remove field"
           >
             ×
           </button>
@@ -429,8 +432,10 @@ export default function FormBuilder({ initialForm }: { initialForm: Form }) {
     "w-full bg-[#0C0C0C] border border-[#3a3a3a] rounded-lg px-3.5 py-2.5 text-white text-[15px] placeholder-[#555] focus:outline-none focus:border-[#555] transition-colors";
 
   const activeField = config.fields.find((f) => f.id === activeId);
-  const origin = typeof window !== "undefined" ? window.location.origin : "https://your-domain.com";
-  const embedUrl = `${origin}/form/${initialForm.id}`;
+  // origin must be set client-side only to avoid SSR/hydration mismatch
+  const [origin, setOrigin] = useState("");
+  useEffect(() => { setOrigin(window.location.origin); }, []);
+  const embedUrl = `${origin || "https://your-domain.com"}/form/${initialForm.id}`;
 
   return (
     <div className="flex flex-col h-full">
