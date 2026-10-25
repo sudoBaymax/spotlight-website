@@ -5,7 +5,14 @@
       "Bash(npm run:*)",
       "Bash(./node_modules/.bin/next build:*)",
       "Bash(node node_modules/next/dist/bin/next build)",
-      "Bash(node node_modules/typescript/bin/tsc --noEmit)"
+      "Bash(node node_modules/typescript/bin/tsc --noEmit)",
+      "Bash(node:*)",
+      "Bash(mkdir -p \"app/\\(marketing\\)/audit\" \"app/\\(marketing\\)/contact\" \"app/\\(marketing\\)/faq\" \"app/\\(marketing\\)/how-it-works\")",
+      "Bash(cp \"app/audit/page.tsx\" \"app/\\(marketing\\)/audit/page.tsx\")",
+      "Bash(cp \"app/audit/AuditForm.tsx\" \"app/\\(marketing\\)/audit/AuditForm.tsx\")",
+      "Bash(cp \"app/contact/page.tsx\" \"app/\\(marketing\\)/contact/page.tsx\")",
+      "Bash(cp \"app/contact/ContactForm.tsx\" \"app/\\(marketing\\)/contact/ContactForm.tsx\")",
+      "Bash(npx tsc:*)"
     ]
   }
 }

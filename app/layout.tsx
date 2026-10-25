@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Instrument_Serif } from "next/font/google";
 import "./globals.css";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
-import MobileCTABar from "@/components/MobileCTABar";
-import ScrollReset from "@/components/ScrollReset";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -39,13 +35,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${instrumentSerif.variable}`}>
-      <body>
-        <ScrollReset />
-        <Nav />
-        <main>{children}</main>
-        <Footer />
-        <MobileCTABar />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
