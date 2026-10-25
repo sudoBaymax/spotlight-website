@@ -4,11 +4,12 @@ import { Redis } from "@upstash/redis";
 // fall through to a no-op cache so the app still works.
 let redis: Redis | null = null;
 
-if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
-  redis = new Redis({
-    url: process.env.UPSTASH_REDIS_REST_URL,
-    token: process.env.UPSTASH_REDIS_REST_TOKEN,
-  });
+// Vercel's Upstash integration sets KV_REST_API_URL / KV_REST_API_TOKEN
+const redisUrl = process.env.KV_REST_API_URL ?? process.env.UPSTASH_REDIS_REST_URL;
+const redisToken = process.env.KV_REST_API_TOKEN ?? process.env.UPSTASH_REDIS_REST_TOKEN;
+
+if (redisUrl && redisToken) {
+  redis = new Redis({ url: redisUrl, token: redisToken });
 }
 
 /**
