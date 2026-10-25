@@ -77,6 +77,16 @@ const NAV = [
       </svg>
     ),
   },
+  {
+    href: "/dashboard/forms",
+    label: "Forms",
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="1" y="1" width="14" height="14" rx="2" />
+        <path d="M4 5h8M4 8h5M4 11h3" />
+      </svg>
+    ),
+  },
 ];
 
 const ADMIN_NAV = [

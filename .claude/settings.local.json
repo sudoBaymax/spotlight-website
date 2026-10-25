@@ -12,7 +12,9 @@
       "Bash(cp \"app/audit/AuditForm.tsx\" \"app/\\(marketing\\)/audit/AuditForm.tsx\")",
       "Bash(cp \"app/contact/page.tsx\" \"app/\\(marketing\\)/contact/page.tsx\")",
       "Bash(cp \"app/contact/ContactForm.tsx\" \"app/\\(marketing\\)/contact/ContactForm.tsx\")",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(vercel env:*)",
+      "Bash(vercel deploy:*)"
     ]
   }
 }
