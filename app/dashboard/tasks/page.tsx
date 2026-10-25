@@ -8,7 +8,7 @@ const PAGE_SIZE = 50;
 const STATUS_COLORS: Record<string, string> = {
   open: "text-amber-400 bg-amber-400/10",
   completed: "text-green-400 bg-green-400/10",
-  dismissed: "text-[#555] bg-[#1a1a1a]",
+  dismissed: "text-[#999] bg-[#242424]",
 };
 
 function relativeTime(iso: string) {
@@ -70,8 +70,8 @@ export default async function TasksPage({
     <div className="p-6 max-w-[1100px]">
       <div className="flex items-center gap-3 mb-6">
         <div>
-          <h1 className="text-white font-semibold text-[20px]">Tasks</h1>
-          <p className="text-[#555] text-[13px]">
+          <h1 className="text-white font-semibold text-[22px]">Tasks</h1>
+          <p className="text-[#999] text-[15px]">
             {openCount} open
             {overdueCount > 0 && (
               <span className="text-[#FF2D1A] ml-1">· {overdueCount} overdue</span>
@@ -85,10 +85,10 @@ export default async function TasksPage({
       <div className="flex gap-2 mb-5">
         <a
           href="/dashboard/tasks"
-          className={`px-3 py-1.5 rounded-full text-[12px] font-medium border transition-colors ${
+          className={`px-3 py-1.5 rounded-full text-[14px] font-medium border transition-colors ${
             !statusFilter
               ? "bg-[#FF2D1A]/10 border-[#FF2D1A]/30 text-[#FF2D1A]"
-              : "border-[#242424] text-[#555] hover:text-[#aaa]"
+              : "border-[#383838] text-[#999] hover:text-[#ccc]"
           }`}
         >
           All
@@ -97,10 +97,10 @@ export default async function TasksPage({
           <a
             key={s}
             href={`/dashboard/tasks?status=${s}`}
-            className={`px-3 py-1.5 rounded-full text-[12px] font-medium border transition-colors capitalize ${
+            className={`px-3 py-1.5 rounded-full text-[14px] font-medium border transition-colors capitalize ${
               statusFilter === s
                 ? "bg-[#FF2D1A]/10 border-[#FF2D1A]/30 text-[#FF2D1A]"
-                : "border-[#242424] text-[#555] hover:text-[#aaa]"
+                : "border-[#383838] text-[#999] hover:text-[#ccc]"
             }`}
           >
             {s}
@@ -109,15 +109,15 @@ export default async function TasksPage({
       </div>
 
       {error ? (
-        <div className="bg-[#141414] border border-[#FF2D1A]/20 rounded-xl p-5">
-          <p className="text-[#FF2D1A] font-semibold text-[13px] mb-1">
+        <div className="bg-[#1c1c1c] border border-[#FF2D1A]/20 rounded-xl p-5">
+          <p className="text-[#FF2D1A] font-semibold text-[15px] mb-1">
             {error.includes("warming up") ? "n8n is warming up" : "Reader error"}
           </p>
-          <p className="text-[#555] text-[12px]">{error}</p>
+          <p className="text-[#999] text-[14px]">{error}</p>
         </div>
       ) : filtered.length === 0 ? (
-        <div className="bg-[#141414] border border-[#242424] rounded-xl p-10 text-center">
-          <p className="text-[#444] text-[13px]">No tasks found.</p>
+        <div className="bg-[#1c1c1c] border border-[#383838] rounded-xl p-10 text-center">
+          <p className="text-[#444] text-[15px]">No tasks found.</p>
         </div>
       ) : (
         <div className="space-y-2">
@@ -127,44 +127,44 @@ export default async function TasksPage({
             return (
               <div
                 key={`${task.lead_id}-${i}`}
-                className={`bg-[#141414] border rounded-xl px-5 py-4 ${
-                  isOverdue ? "border-[#FF2D1A]/20" : "border-[#242424]"
+                className={`bg-[#1c1c1c] border rounded-xl px-5 py-4 ${
+                  isOverdue ? "border-[#FF2D1A]/20" : "border-[#383838]"
                 }`}
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-2 flex-wrap">
                       <span
-                        className={`inline-flex px-2 py-0.5 rounded-full text-[10px] font-semibold capitalize ${
+                        className={`inline-flex px-2 py-0.5 rounded-full text-[12px] font-semibold capitalize ${
                           STATUS_COLORS[task.status] ?? "text-slate-400 bg-slate-400/10"
                         }`}
                       >
                         {task.status}
                       </span>
                       {isOverdue && (
-                        <span className="text-[#FF2D1A] text-[10px] font-semibold">
+                        <span className="text-[#FF2D1A] text-[12px] font-semibold">
                           {relativeTime(task.due_at)}
                         </span>
                       )}
                       {task.owner && (
-                        <span className="text-[#3a3a3a] text-[11px]">· {task.owner}</span>
+                        <span className="text-[#666] text-[13px]">· {task.owner}</span>
                       )}
                     </div>
-                    <p className="text-[#aaa] text-[13px] font-medium mb-1">{task.reason}</p>
+                    <p className="text-[#ccc] text-[15px] font-medium mb-1">{task.reason}</p>
                     {task.suggested_action && (
-                      <p className="text-[#555] text-[12px] leading-relaxed">
+                      <p className="text-[#999] text-[14px] leading-relaxed">
                         {task.suggested_action}
                       </p>
                     )}
-                    <p className="text-[#3a3a3a] text-[11px] mt-2 font-mono">
+                    <p className="text-[#666] text-[13px] mt-2 font-mono">
                       lead: {task.lead_id}
                     </p>
                   </div>
                   <div className="text-right flex-shrink-0">
                     {!isOverdue && task.status === "open" && (
-                      <p className="text-[#555] text-[12px]">{relativeTime(task.due_at)}</p>
+                      <p className="text-[#999] text-[14px]">{relativeTime(task.due_at)}</p>
                     )}
-                    <p className="text-[#3a3a3a] text-[11px] mt-1">
+                    <p className="text-[#666] text-[13px] mt-1">
                       {createdRelative(task.task_created_at)}
                     </p>
                   </div>
@@ -175,14 +175,14 @@ export default async function TasksPage({
 
           {totalPages > 1 && (
             <div className="flex items-center justify-between pt-2">
-              <p className="text-[#555] text-[12px]">
+              <p className="text-[#999] text-[14px]">
                 Page {page} of {totalPages} · {total} tasks
               </p>
               <div className="flex gap-2">
                 {page > 1 && (
                   <a
                     href={`/dashboard/tasks?page=${page - 1}${statusFilter ? `&status=${statusFilter}` : ""}`}
-                    className="px-3 py-1.5 text-[12px] border border-[#242424] rounded-lg text-[#666] hover:text-[#ccc] transition-colors"
+                    className="px-3 py-1.5 text-[14px] border border-[#383838] rounded-lg text-[#aaa] hover:text-[#ccc] transition-colors"
                   >
                     ← Prev
                   </a>
@@ -190,7 +190,7 @@ export default async function TasksPage({
                 {page < totalPages && (
                   <a
                     href={`/dashboard/tasks?page=${page + 1}${statusFilter ? `&status=${statusFilter}` : ""}`}
-                    className="px-3 py-1.5 text-[12px] border border-[#242424] rounded-lg text-[#666] hover:text-[#ccc] transition-colors"
+                    className="px-3 py-1.5 text-[14px] border border-[#383838] rounded-lg text-[#aaa] hover:text-[#ccc] transition-colors"
                   >
                     Next →
                   </a>

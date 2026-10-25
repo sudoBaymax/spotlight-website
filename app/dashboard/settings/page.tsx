@@ -46,10 +46,10 @@ type KeyId = (typeof KEYS)[number]["id"];
 function StatusPill({ set }: { set: boolean }) {
   return (
     <span
-      className={`inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full border ${
+      className={`inline-flex items-center gap-1 text-[12px] font-semibold px-2 py-0.5 rounded-full border ${
         set
           ? "border-green-400/20 text-green-400 bg-green-400/5"
-          : "border-[#242424] text-[#3a3a3a]"
+          : "border-[#383838] text-[#666]"
       }`}
     >
       {set ? "✓ Connected" : "Not set"}
@@ -115,24 +115,24 @@ export default function SettingsPage() {
   return (
     <div className="p-6 max-w-[640px]">
       <div className="mb-7">
-        <h1 className="text-white font-semibold text-[20px]">Setup</h1>
-        <p className="text-[#555] text-[13px] mt-1">
+        <h1 className="text-white font-semibold text-[22px]">Setup</h1>
+        <p className="text-[#999] text-[15px] mt-1">
           Connect your own API accounts to activate the follow-up automation. Your keys are stored encrypted and never shared.
         </p>
       </div>
 
       {/* Status overview */}
-      <div className="bg-[#141414] border border-[#242424] rounded-xl p-5 mb-4">
+      <div className="bg-[#1c1c1c] border border-[#383838] rounded-xl p-5 mb-4">
         <div className="flex items-center justify-between mb-4">
-          <p className="text-[#555] text-[11px] uppercase tracking-wider font-medium">Connection status</p>
+          <p className="text-[#999] text-[13px] uppercase tracking-wider font-medium">Connection status</p>
           {allConnected && (
-            <span className="text-green-400 text-[12px] font-semibold">All systems go</span>
+            <span className="text-green-400 text-[14px] font-semibold">All systems go</span>
           )}
         </div>
         <div className="grid grid-cols-2 gap-3">
           {KEYS.map(({ id, label }) => (
             <div key={id} className="flex items-center justify-between gap-2">
-              <span className="text-[#666] text-[12px]">{label}</span>
+              <span className="text-[#aaa] text-[14px]">{label}</span>
               <StatusPill set={status?.[id] ?? false} />
             </div>
           ))}
@@ -140,19 +140,19 @@ export default function SettingsPage() {
       </div>
 
       {/* Key entry form */}
-      <form onSubmit={handleSave} className="bg-[#141414] border border-[#242424] rounded-xl p-5 space-y-5">
-        <p className="text-[#555] text-[11px] uppercase tracking-wider font-medium">
+      <form onSubmit={handleSave} className="bg-[#1c1c1c] border border-[#383838] rounded-xl p-5 space-y-5">
+        <p className="text-[#999] text-[13px] uppercase tracking-wider font-medium">
           {status && Object.values(status).some(Boolean) ? "Update API keys" : "Add API keys"}
         </p>
 
         {KEYS.map(({ id, label, placeholder, why }) => (
           <div key={id}>
             <div className="flex items-center justify-between mb-1.5">
-              <label className="text-[#888] text-[11px] uppercase tracking-wider font-medium">
+              <label className="text-[#bbb] text-[13px] uppercase tracking-wider font-medium">
                 {label}
               </label>
               {status?.[id] && (
-                <span className="text-[10px] text-green-400 font-semibold">Currently set — paste to replace</span>
+                <span className="text-[12px] text-green-400 font-semibold">Currently set — paste to replace</span>
               )}
             </div>
             <input
@@ -160,15 +160,15 @@ export default function SettingsPage() {
               value={values[id]}
               onChange={(e) => setValues((v) => ({ ...v, [id]: e.target.value }))}
               placeholder={status?.[id] ? "Leave blank to keep current" : placeholder}
-              className="w-full bg-[#0C0C0C] border border-[#2a2a2a] rounded-lg px-3.5 py-2.5 text-white font-mono text-[13px] placeholder-[#333] focus:outline-none focus:border-[#FF2D1A] transition-colors"
+              className="w-full bg-[#0C0C0C] border border-[#3a3a3a] rounded-lg px-3.5 py-2.5 text-white font-mono text-[15px] placeholder-[#333] focus:outline-none focus:border-[#FF2D1A] transition-colors"
             />
-            <p className="text-[#3a3a3a] text-[11px] mt-1">{why}</p>
+            <p className="text-[#666] text-[13px] mt-1">{why}</p>
           </div>
         ))}
 
         {/* Password gate */}
-        <div className="border-t border-[#1a1a1a] pt-4">
-          <label className="block text-[#888] text-[11px] uppercase tracking-wider font-medium mb-1.5">
+        <div className="border-t border-[#3a3a3a] pt-4">
+          <label className="block text-[#bbb] text-[13px] uppercase tracking-wider font-medium mb-1.5">
             Your password (required to save) *
           </label>
           <input
@@ -177,20 +177,20 @@ export default function SettingsPage() {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="••••••••••••"
             required
-            className="w-full bg-[#0C0C0C] border border-[#2a2a2a] rounded-lg px-3.5 py-2.5 text-white text-[14px] placeholder-[#333] focus:outline-none focus:border-[#FF2D1A] transition-colors"
+            className="w-full bg-[#0C0C0C] border border-[#3a3a3a] rounded-lg px-3.5 py-2.5 text-white text-[15px] placeholder-[#333] focus:outline-none focus:border-[#FF2D1A] transition-colors"
           />
-          <p className="text-[#3a3a3a] text-[11px] mt-1">
+          <p className="text-[#666] text-[13px] mt-1">
             Keys are encrypted at rest. Your values are never visible after saving.
           </p>
         </div>
 
         {error && (
-          <p className="text-[#FF2D1A] text-[13px] bg-[#FF2D1A]/10 border border-[#FF2D1A]/20 rounded-lg px-3.5 py-2.5">
+          <p className="text-[#FF2D1A] text-[15px] bg-[#FF2D1A]/10 border border-[#FF2D1A]/20 rounded-lg px-3.5 py-2.5">
             {error}
           </p>
         )}
         {saved && (
-          <p className="text-green-400 text-[13px] bg-green-400/5 border border-green-400/20 rounded-lg px-3.5 py-2.5">
+          <p className="text-green-400 text-[15px] bg-green-400/5 border border-green-400/20 rounded-lg px-3.5 py-2.5">
             API keys saved. Your follow-up automation is now active.
           </p>
         )}
@@ -198,34 +198,34 @@ export default function SettingsPage() {
         <button
           type="submit"
           disabled={loading || !password.trim()}
-          className="w-full bg-[#FF2D1A] hover:bg-[#e02718] disabled:opacity-50 text-white font-semibold text-[14px] rounded-lg py-2.5 transition-colors"
+          className="w-full bg-[#FF2D1A] hover:bg-[#e02718] disabled:opacity-50 text-white font-semibold text-[15px] rounded-lg py-2.5 transition-colors"
         >
           {loading ? "Saving…" : "Save API keys"}
         </button>
       </form>
 
       {/* Help section */}
-      <div className="mt-4 bg-[#141414] border border-[#242424] rounded-xl p-5">
-        <p className="text-[#555] text-[11px] uppercase tracking-wider font-medium mb-3">Where to find your keys</p>
+      <div className="mt-4 bg-[#1c1c1c] border border-[#383838] rounded-xl p-5">
+        <p className="text-[#999] text-[13px] uppercase tracking-wider font-medium mb-3">Where to find your keys</p>
         <div className="space-y-2.5">
           {KEYS.map(({ id, label, link }) => (
-            <div key={id} className="flex items-center justify-between text-[12px]">
-              <span className="text-[#666]">{label}</span>
-              <span className="text-[#3a3a3a] font-mono">{link}</span>
+            <div key={id} className="flex items-center justify-between text-[14px]">
+              <span className="text-[#aaa]">{label}</span>
+              <span className="text-[#666] font-mono">{link}</span>
             </div>
           ))}
         </div>
       </div>
 
       {/* Account section */}
-      <div className="mt-4 bg-[#141414] border border-[#242424] rounded-xl p-5">
-        <p className="text-[#555] text-[11px] uppercase tracking-wider font-medium mb-3">Account</p>
+      <div className="mt-4 bg-[#1c1c1c] border border-[#383838] rounded-xl p-5">
+        <p className="text-[#999] text-[13px] uppercase tracking-wider font-medium mb-3">Account</p>
         <Link
           href="/dashboard/settings/password"
-          className="flex items-center justify-between text-[13px] text-[#666] hover:text-white transition-colors"
+          className="flex items-center justify-between text-[15px] text-[#aaa] hover:text-white transition-colors"
         >
           <span>Change password</span>
-          <span className="text-[#3a3a3a]">→</span>
+          <span className="text-[#666]">→</span>
         </Link>
       </div>
     </div>

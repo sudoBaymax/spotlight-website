@@ -63,8 +63,8 @@ export default async function AlertsPage({
     <div className="p-6 max-w-[1100px]">
       <div className="flex items-center gap-3 mb-6">
         <div>
-          <h1 className="text-white font-semibold text-[20px]">Compliance Alerts</h1>
-          <p className="text-[#555] text-[13px]">
+          <h1 className="text-white font-semibold text-[22px]">Compliance Alerts</h1>
+          <p className="text-[#999] text-[15px]">
             {openCount} open
             {highCount > 0 && (
               <span className="text-[#FF2D1A] ml-1">· {highCount} high severity</span>
@@ -78,30 +78,30 @@ export default async function AlertsPage({
       <div className="flex gap-2 mb-5">
         <a
           href="/dashboard/alerts"
-          className={`px-3 py-1.5 rounded-full text-[12px] font-medium border transition-colors ${
+          className={`px-3 py-1.5 rounded-full text-[14px] font-medium border transition-colors ${
             !severityFilter
               ? "bg-[#FF2D1A]/10 border-[#FF2D1A]/30 text-[#FF2D1A]"
-              : "border-[#242424] text-[#555] hover:text-[#aaa]"
+              : "border-[#383838] text-[#999] hover:text-[#ccc]"
           }`}
         >
           All
         </a>
         <a
           href="/dashboard/alerts?severity=high"
-          className={`px-3 py-1.5 rounded-full text-[12px] font-medium border transition-colors ${
+          className={`px-3 py-1.5 rounded-full text-[14px] font-medium border transition-colors ${
             severityFilter === "high"
               ? "bg-[#FF2D1A]/10 border-[#FF2D1A]/30 text-[#FF2D1A]"
-              : "border-[#242424] text-[#555] hover:text-[#aaa]"
+              : "border-[#383838] text-[#999] hover:text-[#ccc]"
           }`}
         >
           High
         </a>
         <a
           href="/dashboard/alerts?severity=medium"
-          className={`px-3 py-1.5 rounded-full text-[12px] font-medium border transition-colors ${
+          className={`px-3 py-1.5 rounded-full text-[14px] font-medium border transition-colors ${
             severityFilter === "medium"
               ? "bg-[#FF2D1A]/10 border-[#FF2D1A]/30 text-[#FF2D1A]"
-              : "border-[#242424] text-[#555] hover:text-[#aaa]"
+              : "border-[#383838] text-[#999] hover:text-[#ccc]"
           }`}
         >
           Medium
@@ -109,15 +109,15 @@ export default async function AlertsPage({
       </div>
 
       {error ? (
-        <div className="bg-[#141414] border border-[#FF2D1A]/20 rounded-xl p-5">
-          <p className="text-[#FF2D1A] font-semibold text-[13px] mb-1">
+        <div className="bg-[#1c1c1c] border border-[#FF2D1A]/20 rounded-xl p-5">
+          <p className="text-[#FF2D1A] font-semibold text-[15px] mb-1">
             {error.includes("warming up") ? "n8n is warming up" : "Reader error"}
           </p>
-          <p className="text-[#555] text-[12px]">{error}</p>
+          <p className="text-[#999] text-[14px]">{error}</p>
         </div>
       ) : filtered.length === 0 ? (
-        <div className="bg-[#141414] border border-[#242424] rounded-xl p-10 text-center">
-          <p className="text-[#444] text-[13px]">
+        <div className="bg-[#1c1c1c] border border-[#383838] rounded-xl p-10 text-center">
+          <p className="text-[#444] text-[15px]">
             {openCount === 0 ? "No compliance alerts — all clear." : "No alerts match this filter."}
           </p>
         </div>
@@ -128,9 +128,9 @@ export default async function AlertsPage({
             return (
               <div
                 key={alert.call_id + alert.alert_created_at}
-                className={`bg-[#141414] border rounded-xl px-5 py-4 ${
+                className={`bg-[#1c1c1c] border rounded-xl px-5 py-4 ${
                   resolved
-                    ? "border-[#1a1a1a] opacity-60"
+                    ? "border-[#2a2a2a] opacity-60"
                     : alert.severity === "high"
                     ? "border-[#FF2D1A]/20"
                     : "border-amber-400/20"
@@ -140,30 +140,30 @@ export default async function AlertsPage({
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-2 flex-wrap">
                       <span
-                        className={`inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider border ${
+                        className={`inline-flex px-2 py-0.5 rounded-full text-[12px] font-bold uppercase tracking-wider border ${
                           SEVERITY_STYLES[alert.severity] ?? "text-slate-400 bg-slate-400/10 border-slate-400/20"
                         }`}
                       >
                         {alert.severity}
                       </span>
-                      <span className="text-[#555] text-[11px] capitalize">
+                      <span className="text-[#999] text-[13px] capitalize">
                         {TYPE_LABELS[alert.type] ?? alert.type}
                       </span>
                       {resolved && (
-                        <span className="text-green-400 text-[10px] font-semibold">
+                        <span className="text-green-400 text-[12px] font-semibold">
                           ✓ Resolved
                         </span>
                       )}
                     </div>
-                    <p className="text-[#aaa] text-[13px] leading-relaxed">{alert.detail}</p>
-                    <p className="text-[#3a3a3a] text-[11px] mt-2 font-mono">
+                    <p className="text-[#ccc] text-[15px] leading-relaxed">{alert.detail}</p>
+                    <p className="text-[#666] text-[13px] mt-2 font-mono">
                       call: {alert.call_id}
                     </p>
                   </div>
                   <div className="text-right flex-shrink-0 space-y-1">
-                    <p className="text-[#555] text-[12px]">{timeAgo(alert.alert_created_at)}</p>
+                    <p className="text-[#999] text-[14px]">{timeAgo(alert.alert_created_at)}</p>
                     {resolved && alert.resolved_at && (
-                      <p className="text-[#3a3a3a] text-[11px]">
+                      <p className="text-[#666] text-[13px]">
                         resolved {timeAgo(alert.resolved_at)}
                       </p>
                     )}
@@ -175,14 +175,14 @@ export default async function AlertsPage({
 
           {totalPages > 1 && (
             <div className="flex items-center justify-between pt-2">
-              <p className="text-[#555] text-[12px]">
+              <p className="text-[#999] text-[14px]">
                 Page {page} of {totalPages} · {total} alerts
               </p>
               <div className="flex gap-2">
                 {page > 1 && (
                   <a
                     href={`/dashboard/alerts?page=${page - 1}${severityFilter ? `&severity=${severityFilter}` : ""}`}
-                    className="px-3 py-1.5 text-[12px] border border-[#242424] rounded-lg text-[#666] hover:text-[#ccc] transition-colors"
+                    className="px-3 py-1.5 text-[14px] border border-[#383838] rounded-lg text-[#aaa] hover:text-[#ccc] transition-colors"
                   >
                     ← Prev
                   </a>
@@ -190,7 +190,7 @@ export default async function AlertsPage({
                 {page < totalPages && (
                   <a
                     href={`/dashboard/alerts?page=${page + 1}${severityFilter ? `&severity=${severityFilter}` : ""}`}
-                    className="px-3 py-1.5 text-[12px] border border-[#242424] rounded-lg text-[#666] hover:text-[#ccc] transition-colors"
+                    className="px-3 py-1.5 text-[14px] border border-[#383838] rounded-lg text-[#aaa] hover:text-[#ccc] transition-colors"
                   >
                     Next →
                   </a>

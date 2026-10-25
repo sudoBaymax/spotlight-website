@@ -11,17 +11,17 @@ function FormCard({ form }: { form: Form }) {
   const hasWebhook = !!form.webhook_url;
 
   return (
-    <div className="bg-[#141414] border border-[#242424] rounded-xl p-5 flex items-center justify-between gap-4">
+    <div className="bg-[#1c1c1c] border border-[#383838] rounded-xl p-5 flex items-center justify-between gap-4">
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2.5 mb-1">
-          <h3 className="text-white font-semibold text-[14px] truncate">{form.name}</h3>
+          <h3 className="text-white font-semibold text-[15px] truncate">{form.name}</h3>
           {!form.active && (
-            <span className="text-[10px] font-medium text-[#555] bg-[#1a1a1a] border border-[#2a2a2a] rounded px-1.5 py-0.5">
+            <span className="text-[12px] font-medium text-[#999] bg-[#2e2e2e] border border-[#3a3a3a] rounded px-1.5 py-0.5">
               inactive
             </span>
           )}
         </div>
-        <div className="flex items-center gap-3 text-[12px] text-[#555]">
+        <div className="flex items-center gap-3 text-[14px] text-[#999]">
           <span>{fieldCount} field{fieldCount !== 1 ? "s" : ""}</span>
           <span>·</span>
           {hasWebhook ? (
@@ -34,7 +34,7 @@ function FormCard({ form }: { form: Form }) {
 
       <Link
         href={`/dashboard/forms/${form.id}`}
-        className="flex-shrink-0 px-3.5 py-1.5 bg-[#242424] hover:bg-[#2a2a2a] text-[#ccc] text-[12px] font-medium rounded-lg transition-colors"
+        className="flex-shrink-0 px-3.5 py-1.5 bg-[#2e2e2e] hover:bg-[#383838] text-[#ccc] text-[14px] font-medium rounded-lg transition-colors"
       >
         Edit →
       </Link>
@@ -53,28 +53,28 @@ export default async function FormsPage() {
     <div className="p-6 max-w-[640px]">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-white font-semibold text-[20px]">Forms</h1>
-          <p className="text-[#555] text-[13px] mt-0.5">
+          <h1 className="text-white font-semibold text-[22px]">Forms</h1>
+          <p className="text-[#999] text-[15px] mt-0.5">
             Build lead capture forms that trigger your voice bot instantly.
           </p>
         </div>
         <Link
           href="/dashboard/forms/new"
-          className="px-4 py-2 bg-[#FF2D1A] hover:bg-[#e02718] text-white text-[13px] font-semibold rounded-lg transition-colors"
+          className="px-4 py-2 bg-[#FF2D1A] hover:bg-[#e02718] text-white text-[15px] font-semibold rounded-lg transition-colors"
         >
           + New Form
         </Link>
       </div>
 
       {forms.length === 0 ? (
-        <div className="bg-[#141414] border border-[#242424] rounded-xl p-8 text-center">
-          <p className="text-[#555] text-[14px] mb-1">No forms yet</p>
-          <p className="text-[#3a3a3a] text-[12px] mb-5">
+        <div className="bg-[#1c1c1c] border border-[#383838] rounded-xl p-8 text-center">
+          <p className="text-[#999] text-[15px] mb-1">No forms yet</p>
+          <p className="text-[#666] text-[14px] mb-5">
             Create your first form to start capturing leads from your website.
           </p>
           <Link
             href="/dashboard/forms/new"
-            className="inline-flex px-4 py-2 bg-[#FF2D1A] hover:bg-[#e02718] text-white text-[13px] font-semibold rounded-lg transition-colors"
+            className="inline-flex px-4 py-2 bg-[#FF2D1A] hover:bg-[#e02718] text-white text-[15px] font-semibold rounded-lg transition-colors"
           >
             Create a form
           </Link>

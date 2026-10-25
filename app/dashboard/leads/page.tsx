@@ -64,8 +64,8 @@ export default async function LeadsPage({
     <div className="p-6 max-w-[1100px]">
       <div className="flex items-center gap-3 mb-6">
         <div>
-          <h1 className="text-white font-semibold text-[20px]">Leads</h1>
-          <p className="text-[#555] text-[13px]">{total} total</p>
+          <h1 className="text-white font-semibold text-[22px]">Leads</h1>
+          <p className="text-[#999] text-[15px]">{total} total</p>
         </div>
         {dataOrigin === "FAKE" && <SampleDataBadge />}
       </div>
@@ -73,23 +73,23 @@ export default async function LeadsPage({
       {/* Filters */}
       <div className="flex flex-wrap gap-4 mb-5">
         <div className="flex gap-2 flex-wrap">
-          <span className="text-[#444] text-[11px] self-center uppercase tracking-wider">Status</span>
+          <span className="text-[#444] text-[13px] self-center uppercase tracking-wider">Status</span>
           <a href={`/dashboard/leads${qs({ intent: searchParams.intent ?? "" })}`}
-            className={`px-3 py-1 rounded-full text-[12px] border transition-colors ${!searchParams.status ? "bg-[#FF2D1A]/10 border-[#FF2D1A]/30 text-[#FF2D1A]" : "border-[#242424] text-[#555] hover:text-[#aaa]"}`}>All</a>
+            className={`px-3 py-1 rounded-full text-[14px] border transition-colors ${!searchParams.status ? "bg-[#FF2D1A]/10 border-[#FF2D1A]/30 text-[#FF2D1A]" : "border-[#383838] text-[#999] hover:text-[#ccc]"}`}>All</a>
           {STATUSES.map(s => (
             <a key={s} href={`/dashboard/leads${qs({ status: s, intent: searchParams.intent ?? "" })}`}
-              className={`px-3 py-1 rounded-full text-[12px] border transition-colors capitalize ${searchParams.status === s ? "bg-[#FF2D1A]/10 border-[#FF2D1A]/30 text-[#FF2D1A]" : "border-[#242424] text-[#555] hover:text-[#aaa]"}`}>
+              className={`px-3 py-1 rounded-full text-[14px] border transition-colors capitalize ${searchParams.status === s ? "bg-[#FF2D1A]/10 border-[#FF2D1A]/30 text-[#FF2D1A]" : "border-[#383838] text-[#999] hover:text-[#ccc]"}`}>
               {s.replace(/_/g, " ")}
             </a>
           ))}
         </div>
         <div className="flex gap-2 flex-wrap">
-          <span className="text-[#444] text-[11px] self-center uppercase tracking-wider">Intent</span>
+          <span className="text-[#444] text-[13px] self-center uppercase tracking-wider">Intent</span>
           <a href={`/dashboard/leads${qs({ status: searchParams.status ?? "" })}`}
-            className={`px-3 py-1 rounded-full text-[12px] border transition-colors ${!searchParams.intent ? "bg-[#FF2D1A]/10 border-[#FF2D1A]/30 text-[#FF2D1A]" : "border-[#242424] text-[#555] hover:text-[#aaa]"}`}>All</a>
+            className={`px-3 py-1 rounded-full text-[14px] border transition-colors ${!searchParams.intent ? "bg-[#FF2D1A]/10 border-[#FF2D1A]/30 text-[#FF2D1A]" : "border-[#383838] text-[#999] hover:text-[#ccc]"}`}>All</a>
           {INTENTS.map(i => (
             <a key={i} href={`/dashboard/leads${qs({ status: searchParams.status ?? "", intent: i })}`}
-              className={`px-3 py-1 rounded-full text-[12px] border transition-colors capitalize ${searchParams.intent === i ? "bg-[#FF2D1A]/10 border-[#FF2D1A]/30 text-[#FF2D1A]" : "border-[#242424] text-[#555] hover:text-[#aaa]"}`}>
+              className={`px-3 py-1 rounded-full text-[14px] border transition-colors capitalize ${searchParams.intent === i ? "bg-[#FF2D1A]/10 border-[#FF2D1A]/30 text-[#FF2D1A]" : "border-[#383838] text-[#999] hover:text-[#ccc]"}`}>
               {i}
             </a>
           ))}
@@ -97,14 +97,14 @@ export default async function LeadsPage({
       </div>
 
       {error ? (
-        <div className="bg-[#141414] border border-[#FF2D1A]/20 rounded-xl p-5">
-          <p className="text-[#FF2D1A] text-[13px]">{error}</p>
+        <div className="bg-[#1c1c1c] border border-[#FF2D1A]/20 rounded-xl p-5">
+          <p className="text-[#FF2D1A] text-[15px]">{error}</p>
         </div>
       ) : (
-        <div className="bg-[#141414] border border-[#242424] rounded-xl overflow-hidden">
-          <table className="w-full text-[13px]">
+        <div className="bg-[#1c1c1c] border border-[#383838] rounded-xl overflow-hidden">
+          <table className="w-full text-[15px]">
             <thead>
-              <tr className="border-b border-[#1a1a1a] text-[#444] text-[11px] uppercase tracking-wider">
+              <tr className="border-b border-[#2a2a2a] text-[#444] text-[13px] uppercase tracking-wider">
                 <th className="text-left px-4 py-3 font-medium">Name</th>
                 <th className="text-left px-4 py-3 font-medium">Contact</th>
                 <th className="text-left px-4 py-3 font-medium">Intent</th>
@@ -123,22 +123,22 @@ export default async function LeadsPage({
                   <tr key={lead.lead_id} className="hover:bg-[#181818] transition-colors">
                     <td className="px-4 py-3">
                       <p className="text-[#ccc]">{lead.name}</p>
-                      <p className="text-[#3a3a3a] text-[11px] mt-0.5 truncate max-w-[180px]">{lead.inquiry_topic}</p>
+                      <p className="text-[#aaa] text-[13px] mt-0.5 truncate max-w-[180px]">{lead.inquiry_topic}</p>
                     </td>
                     <td className="px-4 py-3">
-                      <p className="text-[#666] text-[12px]">{lead.phone}</p>
-                      <p className="text-[#444] text-[11px] mt-0.5 truncate max-w-[160px]">{lead.email}</p>
+                      <p className="text-[#aaa] text-[14px]">{lead.phone}</p>
+                      <p className="text-[#444] text-[13px] mt-0.5 truncate max-w-[160px]">{lead.email}</p>
                     </td>
                     <td className="px-4 py-3 text-[#777] capitalize">{lead.intent}</td>
                     <td className="px-4 py-3">
-                      <span className={`inline-flex px-2 py-0.5 rounded-full text-[11px] font-semibold capitalize ${STATUS_COLORS[lead.status] ?? "text-slate-400 bg-slate-400/10"}`}>
+                      <span className={`inline-flex px-2 py-0.5 rounded-full text-[13px] font-semibold capitalize ${STATUS_COLORS[lead.status] ?? "text-slate-400 bg-slate-400/10"}`}>
                         {lead.status.replace(/_/g, " ")}
                       </span>
                       {lead.suppression_flag && (
-                        <span className="block text-[10px] text-[#FF2D1A] mt-0.5">{lead.suppression_flag}</span>
+                        <span className="block text-[12px] text-[#FF2D1A] mt-0.5">{lead.suppression_flag}</span>
                       )}
                     </td>
-                    <td className="px-4 py-3 text-right text-[#555]">{lead.attempts}</td>
+                    <td className="px-4 py-3 text-right text-[#999]">{lead.attempts}</td>
                     <td className="px-4 py-3 text-right text-[#444]">{relativeTime(lead.submitted_at)}</td>
                   </tr>
                 ))
@@ -146,11 +146,11 @@ export default async function LeadsPage({
             </tbody>
           </table>
           {totalPages > 1 && (
-            <div className="flex items-center justify-between px-4 py-3 border-t border-[#1a1a1a]">
-              <p className="text-[#555] text-[12px]">Page {page} of {totalPages} · {total} leads</p>
+            <div className="flex items-center justify-between px-4 py-3 border-t border-[#2a2a2a]">
+              <p className="text-[#999] text-[14px]">Page {page} of {totalPages} · {total} leads</p>
               <div className="flex gap-2">
-                {page > 1 && <a href={`/dashboard/leads?page=${page - 1}${searchParams.status ? `&status=${searchParams.status}` : ""}${searchParams.intent ? `&intent=${searchParams.intent}` : ""}`} className="px-3 py-1.5 text-[12px] border border-[#242424] rounded-lg text-[#666] hover:text-[#ccc] transition-colors">← Prev</a>}
-                {page < totalPages && <a href={`/dashboard/leads?page=${page + 1}${searchParams.status ? `&status=${searchParams.status}` : ""}${searchParams.intent ? `&intent=${searchParams.intent}` : ""}`} className="px-3 py-1.5 text-[12px] border border-[#242424] rounded-lg text-[#666] hover:text-[#ccc] transition-colors">Next →</a>}
+                {page > 1 && <a href={`/dashboard/leads?page=${page - 1}${searchParams.status ? `&status=${searchParams.status}` : ""}${searchParams.intent ? `&intent=${searchParams.intent}` : ""}`} className="px-3 py-1.5 text-[14px] border border-[#383838] rounded-lg text-[#aaa] hover:text-[#ccc] transition-colors">← Prev</a>}
+                {page < totalPages && <a href={`/dashboard/leads?page=${page + 1}${searchParams.status ? `&status=${searchParams.status}` : ""}${searchParams.intent ? `&intent=${searchParams.intent}` : ""}`} className="px-3 py-1.5 text-[14px] border border-[#383838] rounded-lg text-[#aaa] hover:text-[#ccc] transition-colors">Next →</a>}
               </div>
             </div>
           )}

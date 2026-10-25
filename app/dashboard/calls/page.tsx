@@ -64,8 +64,8 @@ export default async function CallsPage({
     <div className="p-6 max-w-[1100px]">
       <div className="flex items-center gap-3 mb-6">
         <div>
-          <h1 className="text-white font-semibold text-[20px]">Calls</h1>
-          <p className="text-[#555] text-[13px]">{total} total</p>
+          <h1 className="text-white font-semibold text-[22px]">Calls</h1>
+          <p className="text-[#999] text-[15px]">{total} total</p>
         </div>
         {dataOrigin === "FAKE" && <SampleDataBadge />}
       </div>
@@ -74,10 +74,10 @@ export default async function CallsPage({
       <div className="flex flex-wrap gap-2 mb-5">
         <a
           href="/dashboard/calls"
-          className={`px-3 py-1.5 rounded-full text-[12px] font-medium border transition-colors ${
+          className={`px-3 py-1.5 rounded-full text-[14px] font-medium border transition-colors ${
             !outcomeFilter
               ? "bg-[#FF2D1A]/10 border-[#FF2D1A]/30 text-[#FF2D1A]"
-              : "border-[#242424] text-[#555] hover:text-[#aaa]"
+              : "border-[#383838] text-[#999] hover:text-[#ccc]"
           }`}
         >
           All
@@ -86,10 +86,10 @@ export default async function CallsPage({
           <a
             key={o}
             href={`/dashboard/calls?outcome=${o}`}
-            className={`px-3 py-1.5 rounded-full text-[12px] font-medium border transition-colors ${
+            className={`px-3 py-1.5 rounded-full text-[14px] font-medium border transition-colors ${
               outcomeFilter === o
                 ? "bg-[#FF2D1A]/10 border-[#FF2D1A]/30 text-[#FF2D1A]"
-                : "border-[#242424] text-[#555] hover:text-[#aaa]"
+                : "border-[#383838] text-[#999] hover:text-[#ccc]"
             }`}
           >
             {o.replace(/_/g, " ")}
@@ -98,20 +98,20 @@ export default async function CallsPage({
       </div>
 
       {error ? (
-        <div className="bg-[#141414] border border-[#FF2D1A]/20 rounded-xl p-5">
-          <p className="text-[#FF2D1A] font-semibold text-[13px] mb-1">
+        <div className="bg-[#1c1c1c] border border-[#FF2D1A]/20 rounded-xl p-5">
+          <p className="text-[#FF2D1A] font-semibold text-[15px] mb-1">
             {error?.includes("warming up") ? "n8n is warming up" : "Reader error"}
           </p>
-          <p className="text-[#555] text-[12px]">{error}</p>
+          <p className="text-[#999] text-[14px]">{error}</p>
           {error?.includes("warming up") && (
-            <p className="text-[#444] text-[12px] mt-2">Refresh the page in a moment — this only happens after a few minutes of inactivity.</p>
+            <p className="text-[#444] text-[14px] mt-2">Refresh the page in a moment — this only happens after a few minutes of inactivity.</p>
           )}
         </div>
       ) : (
-        <div className="bg-[#141414] border border-[#242424] rounded-xl overflow-hidden">
-          <table className="w-full text-[13px]">
+        <div className="bg-[#1c1c1c] border border-[#383838] rounded-xl overflow-hidden">
+          <table className="w-full text-[15px]">
             <thead>
-              <tr className="border-b border-[#1a1a1a] text-[#444] text-[11px] uppercase tracking-wider">
+              <tr className="border-b border-[#2a2a2a] text-[#444] text-[13px] uppercase tracking-wider">
                 <th className="text-left px-4 py-3 font-medium">Lead</th>
                 <th className="text-left px-4 py-3 font-medium">Outcome</th>
                 <th className="text-left px-4 py-3 font-medium">Direction</th>
@@ -124,7 +124,7 @@ export default async function CallsPage({
             <tbody className="divide-y divide-[#1a1a1a]">
               {rows.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="px-4 py-10 text-center text-[#444] text-[13px]">
+                  <td colSpan={7} className="px-4 py-10 text-center text-[#444] text-[15px]">
                     No calls found.
                   </td>
                 </tr>
@@ -134,24 +134,24 @@ export default async function CallsPage({
                     <td className="px-4 py-3">
                       <p className="text-[#ccc]">{call.lead_name ?? call.lead_id}</p>
                       {call.lead_phone && (
-                        <p className="text-[#444] text-[11px] mt-0.5">{call.lead_phone}</p>
+                        <p className="text-[#444] text-[13px] mt-0.5">{call.lead_phone}</p>
                       )}
                     </td>
                     <td className="px-4 py-3">
                       <span
-                        className={`inline-flex px-2.5 py-1 rounded-full text-[11px] font-semibold capitalize ${
+                        className={`inline-flex px-2.5 py-1 rounded-full text-[13px] font-semibold capitalize ${
                           OUTCOME_COLORS[call.outcome] ?? "text-slate-400 bg-slate-400/10"
                         }`}
                       >
                         {call.outcome.replace(/_/g, " ")}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-[#666] capitalize">{call.direction}</td>
-                    <td className="px-4 py-3 text-right text-[#888]">{fmt(call.duration_s)}</td>
-                    <td className="px-4 py-3 text-right text-[#555]">${call.cost_usd.toFixed(2)}</td>
+                    <td className="px-4 py-3 text-[#aaa] capitalize">{call.direction}</td>
+                    <td className="px-4 py-3 text-right text-[#bbb]">{fmt(call.duration_s)}</td>
+                    <td className="px-4 py-3 text-right text-[#999]">${call.cost_usd.toFixed(2)}</td>
                     <td className="px-4 py-3">
                       {call.compliance_flag ? (
-                        <span className="text-[#FF2D1A] text-[11px] font-semibold">⚠ Flag</span>
+                        <span className="text-[#FF2D1A] text-[13px] font-semibold">⚠ Flag</span>
                       ) : (
                         <span className="text-[#2a2a2a]">—</span>
                       )}
@@ -165,15 +165,15 @@ export default async function CallsPage({
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="flex items-center justify-between px-4 py-3 border-t border-[#1a1a1a]">
-              <p className="text-[#555] text-[12px]">
+            <div className="flex items-center justify-between px-4 py-3 border-t border-[#2a2a2a]">
+              <p className="text-[#999] text-[14px]">
                 Page {page} of {totalPages} · {total} calls
               </p>
               <div className="flex gap-2">
                 {page > 1 && (
                   <a
                     href={`/dashboard/calls?page=${page - 1}${outcomeFilter ? `&outcome=${outcomeFilter}` : ""}`}
-                    className="px-3 py-1.5 text-[12px] border border-[#242424] rounded-lg text-[#666] hover:text-[#ccc] hover:border-[#3a3a3a] transition-colors"
+                    className="px-3 py-1.5 text-[14px] border border-[#383838] rounded-lg text-[#aaa] hover:text-[#ccc] hover:border-[#3a3a3a] transition-colors"
                   >
                     ← Prev
                   </a>
@@ -181,7 +181,7 @@ export default async function CallsPage({
                 {page < totalPages && (
                   <a
                     href={`/dashboard/calls?page=${page + 1}${outcomeFilter ? `&outcome=${outcomeFilter}` : ""}`}
-                    className="px-3 py-1.5 text-[12px] border border-[#242424] rounded-lg text-[#666] hover:text-[#ccc] hover:border-[#3a3a3a] transition-colors"
+                    className="px-3 py-1.5 text-[14px] border border-[#383838] rounded-lg text-[#aaa] hover:text-[#ccc] hover:border-[#3a3a3a] transition-colors"
                   >
                     Next →
                   </a>

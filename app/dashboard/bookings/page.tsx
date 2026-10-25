@@ -32,8 +32,8 @@ function ConfirmBadge({ status }: { status: string | null }) {
   const email = status?.includes("email:sent") ?? false;
   return (
     <div className="flex gap-1.5">
-      <span className={`inline-flex px-2 py-0.5 rounded-full text-[10px] font-semibold ${sms ? "bg-green-400/10 text-green-400" : "bg-[#1a1a1a] text-[#444]"}`}>SMS</span>
-      <span className={`inline-flex px-2 py-0.5 rounded-full text-[10px] font-semibold ${email ? "bg-green-400/10 text-green-400" : "bg-[#1a1a1a] text-[#444]"}`}>Email</span>
+      <span className={`inline-flex px-2 py-0.5 rounded-full text-[12px] font-semibold ${sms ? "bg-green-400/10 text-green-400" : "bg-[#242424] text-[#444]"}`}>SMS</span>
+      <span className={`inline-flex px-2 py-0.5 rounded-full text-[12px] font-semibold ${email ? "bg-green-400/10 text-green-400" : "bg-[#242424] text-[#444]"}`}>Email</span>
     </div>
   );
 }
@@ -70,31 +70,31 @@ export default async function BookingsPage({
     <div className="p-6 max-w-[1100px]">
       <div className="flex items-center gap-3 mb-6">
         <div>
-          <h1 className="text-white font-semibold text-[20px]">Bookings</h1>
-          <p className="text-[#555] text-[13px]">{total} confirmed · {upcoming.length} upcoming</p>
+          <h1 className="text-white font-semibold text-[22px]">Bookings</h1>
+          <p className="text-[#999] text-[15px]">{total} confirmed · {upcoming.length} upcoming</p>
         </div>
         {dataOrigin === "FAKE" && <SampleDataBadge />}
       </div>
 
       {error ? (
-        <div className="bg-[#141414] border border-[#FF2D1A]/20 rounded-xl p-5">
-          <p className="text-[#FF2D1A] text-[13px]">{error}</p>
+        <div className="bg-[#1c1c1c] border border-[#FF2D1A]/20 rounded-xl p-5">
+          <p className="text-[#FF2D1A] text-[15px]">{error}</p>
         </div>
       ) : (
         <>
           {/* Upcoming */}
           {upcoming.length > 0 && (
             <div className="mb-4">
-              <p className="text-[#555] text-[11px] uppercase tracking-wider font-medium mb-3">Upcoming</p>
+              <p className="text-[#999] text-[13px] uppercase tracking-wider font-medium mb-3">Upcoming</p>
               <div className="space-y-2">
                 {upcoming.map((b) => (
-                  <div key={b.idem_key} className="bg-[#141414] border border-[#242424] rounded-xl px-5 py-4 flex items-center justify-between gap-4">
+                  <div key={b.idem_key} className="bg-[#1c1c1c] border border-[#383838] rounded-xl px-5 py-4 flex items-center justify-between gap-4">
                     <div>
-                      <p className="text-white font-medium text-[14px]">{b.lead_name}</p>
-                      <p className="text-[#555] text-[12px] mt-0.5">{b.phone} · {b.email}</p>
+                      <p className="text-white font-medium text-[15px]">{b.lead_name}</p>
+                      <p className="text-[#999] text-[14px] mt-0.5">{b.phone} · {b.email}</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-[#22c55e] font-semibold text-[13px]">{formatDateTime(b.start_iso)}</p>
+                      <p className="text-[#22c55e] font-semibold text-[15px]">{formatDateTime(b.start_iso)}</p>
                       <div className="mt-1.5 flex justify-end"><ConfirmBadge status={b.confirm_status} /></div>
                     </div>
                   </div>
@@ -104,10 +104,10 @@ export default async function BookingsPage({
           )}
 
           {/* All bookings table */}
-          <div className="bg-[#141414] border border-[#242424] rounded-xl overflow-hidden">
-            <table className="w-full text-[13px]">
+          <div className="bg-[#1c1c1c] border border-[#383838] rounded-xl overflow-hidden">
+            <table className="w-full text-[15px]">
               <thead>
-                <tr className="border-b border-[#1a1a1a] text-[#444] text-[11px] uppercase tracking-wider">
+                <tr className="border-b border-[#2a2a2a] text-[#444] text-[13px] uppercase tracking-wider">
                   <th className="text-left px-4 py-3 font-medium">Lead</th>
                   <th className="text-left px-4 py-3 font-medium">Contact</th>
                   <th className="text-left px-4 py-3 font-medium">Appointment</th>
@@ -123,11 +123,11 @@ export default async function BookingsPage({
                     <tr key={b.idem_key} className="hover:bg-[#181818] transition-colors">
                       <td className="px-4 py-3 text-[#ccc]">{b.lead_name}</td>
                       <td className="px-4 py-3">
-                        <p className="text-[#666] text-[12px]">{b.phone}</p>
-                        <p className="text-[#444] text-[11px] mt-0.5 truncate max-w-[160px]">{b.email}</p>
+                        <p className="text-[#aaa] text-[14px]">{b.phone}</p>
+                        <p className="text-[#444] text-[13px] mt-0.5 truncate max-w-[160px]">{b.email}</p>
                       </td>
                       <td className="px-4 py-3">
-                        <p className={`text-[13px] font-medium ${new Date(b.start_iso) > new Date() ? "text-[#22c55e]" : "text-[#888]"}`}>
+                        <p className={`text-[15px] font-medium ${new Date(b.start_iso) > new Date() ? "text-[#22c55e]" : "text-[#bbb]"}`}>
                           {formatDateTime(b.start_iso)}
                         </p>
                       </td>
@@ -139,11 +139,11 @@ export default async function BookingsPage({
               </tbody>
             </table>
             {totalPages > 1 && (
-              <div className="flex items-center justify-between px-4 py-3 border-t border-[#1a1a1a]">
-                <p className="text-[#555] text-[12px]">Page {page} of {totalPages}</p>
+              <div className="flex items-center justify-between px-4 py-3 border-t border-[#2a2a2a]">
+                <p className="text-[#999] text-[14px]">Page {page} of {totalPages}</p>
                 <div className="flex gap-2">
-                  {page > 1 && <a href={`/dashboard/bookings?page=${page - 1}`} className="px-3 py-1.5 text-[12px] border border-[#242424] rounded-lg text-[#666] hover:text-[#ccc] transition-colors">← Prev</a>}
-                  {page < totalPages && <a href={`/dashboard/bookings?page=${page + 1}`} className="px-3 py-1.5 text-[12px] border border-[#242424] rounded-lg text-[#666] hover:text-[#ccc] transition-colors">Next →</a>}
+                  {page > 1 && <a href={`/dashboard/bookings?page=${page - 1}`} className="px-3 py-1.5 text-[14px] border border-[#383838] rounded-lg text-[#aaa] hover:text-[#ccc] transition-colors">← Prev</a>}
+                  {page < totalPages && <a href={`/dashboard/bookings?page=${page + 1}`} className="px-3 py-1.5 text-[14px] border border-[#383838] rounded-lg text-[#aaa] hover:text-[#ccc] transition-colors">Next →</a>}
                 </div>
               </div>
             )}

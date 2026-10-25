@@ -35,22 +35,22 @@ export default function ChangePasswordPage() {
   }
 
   const INPUT_CLS =
-    "w-full bg-[#0C0C0C] border border-[#2a2a2a] rounded-lg px-3.5 py-2.5 text-white text-[14px] placeholder-[#333] focus:outline-none focus:border-[#FF2D1A] transition-colors";
+    "w-full bg-[#0C0C0C] border border-[#3a3a3a] rounded-lg px-3.5 py-2.5 text-white text-[15px] placeholder-[#333] focus:outline-none focus:border-[#FF2D1A] transition-colors";
 
   if (done) {
     return (
       <div className="p-6 max-w-[480px]">
-        <div className="bg-[#141414] border border-green-500/20 rounded-xl p-6">
+        <div className="bg-[#1c1c1c] border border-green-500/20 rounded-xl p-6">
           <div className="flex items-center gap-2 mb-3">
-            <span className="text-green-400 text-[18px]">✓</span>
-            <h2 className="text-white font-semibold text-[16px]">Password updated</h2>
+            <span className="text-green-400 text-[20px]">✓</span>
+            <h2 className="text-white font-semibold text-[17px]">Password updated</h2>
           </div>
-          <p className="text-[#555] text-[13px] mb-5">
+          <p className="text-[#999] text-[15px] mb-5">
             Your new password is active. You&apos;ll need to use it next time you log in.
           </p>
           <Link
             href="/dashboard/settings"
-            className="inline-flex px-4 py-2 bg-[#242424] hover:bg-[#2a2a2a] text-[#ccc] text-[13px] font-medium rounded-lg transition-colors"
+            className="inline-flex px-4 py-2 bg-[#2e2e2e] hover:bg-[#383838] text-[#ccc] text-[15px] font-medium rounded-lg transition-colors"
           >
             ← Back to settings
           </Link>
@@ -62,16 +62,16 @@ export default function ChangePasswordPage() {
   return (
     <div className="p-6 max-w-[480px]">
       <div className="flex items-center gap-3 mb-6">
-        <Link href="/dashboard/settings" className="text-[#555] hover:text-[#aaa] transition-colors text-[14px]">
+        <Link href="/dashboard/settings" className="text-[#999] hover:text-[#aaa] transition-colors text-[15px]">
           ← Settings
         </Link>
         <span className="text-[#2a2a2a]">/</span>
-        <h1 className="text-white font-semibold text-[18px]">Change password</h1>
+        <h1 className="text-white font-semibold text-[20px]">Change password</h1>
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-[#141414] border border-[#242424] rounded-xl p-5 space-y-4">
+      <form onSubmit={handleSubmit} className="bg-[#1c1c1c] border border-[#383838] rounded-xl p-5 space-y-4">
         <div>
-          <label className="block text-[#888] text-[11px] uppercase tracking-wider font-medium mb-1.5">
+          <label className="block text-[#bbb] text-[13px] uppercase tracking-wider font-medium mb-1.5">
             Current password *
           </label>
           <input
@@ -84,9 +84,9 @@ export default function ChangePasswordPage() {
           />
         </div>
 
-        <div className="border-t border-[#1a1a1a] pt-4">
+        <div className="border-t border-[#3a3a3a] pt-4">
           <div className="mb-4">
-            <label className="block text-[#888] text-[11px] uppercase tracking-wider font-medium mb-1.5">
+            <label className="block text-[#bbb] text-[13px] uppercase tracking-wider font-medium mb-1.5">
               New password *
             </label>
             <input
@@ -98,12 +98,12 @@ export default function ChangePasswordPage() {
               className={`${INPUT_CLS} ${tooShort ? "border-amber-400/40" : ""}`}
             />
             {tooShort && (
-              <p className="text-amber-400 text-[11px] mt-1">Must be at least 12 characters</p>
+              <p className="text-amber-400 text-[13px] mt-1">Must be at least 12 characters</p>
             )}
           </div>
 
           <div>
-            <label className="block text-[#888] text-[11px] uppercase tracking-wider font-medium mb-1.5">
+            <label className="block text-[#bbb] text-[13px] uppercase tracking-wider font-medium mb-1.5">
               Confirm new password *
             </label>
             <input
@@ -115,13 +115,13 @@ export default function ChangePasswordPage() {
               className={`${INPUT_CLS} ${mismatch ? "border-[#FF2D1A]/40" : ""}`}
             />
             {mismatch && (
-              <p className="text-[#FF2D1A] text-[11px] mt-1">Passwords do not match</p>
+              <p className="text-[#FF2D1A] text-[13px] mt-1">Passwords do not match</p>
             )}
           </div>
         </div>
 
         {error && (
-          <p className="text-[#FF2D1A] text-[13px] bg-[#FF2D1A]/10 border border-[#FF2D1A]/20 rounded-lg px-3.5 py-2.5">
+          <p className="text-[#FF2D1A] text-[15px] bg-[#FF2D1A]/10 border border-[#FF2D1A]/20 rounded-lg px-3.5 py-2.5">
             {error}
           </p>
         )}
@@ -129,7 +129,7 @@ export default function ChangePasswordPage() {
         <button
           type="submit"
           disabled={loading || !!mismatch || !!tooShort || !current || !next || !confirm}
-          className="w-full bg-[#FF2D1A] hover:bg-[#e02718] disabled:opacity-50 text-white font-semibold text-[14px] rounded-lg py-2.5 transition-colors"
+          className="w-full bg-[#FF2D1A] hover:bg-[#e02718] disabled:opacity-50 text-white font-semibold text-[15px] rounded-lg py-2.5 transition-colors"
         >
           {loading ? "Updating…" : "Update password"}
         </button>

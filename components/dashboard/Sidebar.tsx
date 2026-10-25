@@ -130,7 +130,7 @@ export default function Sidebar({
     href === "/dashboard" ? pathname === "/dashboard" : pathname.startsWith(href);
 
   return (
-    <aside className="flex flex-col w-56 min-h-screen bg-[#0C0C0C] border-r border-[#1a1a1a] px-3 py-5 flex-shrink-0">
+    <aside className="flex flex-col w-56 min-h-screen bg-[#0C0C0C] border-r border-[#3a3a3a] px-3 py-5 flex-shrink-0">
       {/* Logo */}
       <div className="flex items-center gap-2.5 px-2 mb-8">
         <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
@@ -144,11 +144,11 @@ export default function Sidebar({
       {/* Impersonation banner */}
       {impersonating && (
         <div className="mx-1 mb-4 bg-amber-400/5 border border-amber-400/15 rounded-lg px-3 py-2.5">
-          <p className="text-amber-400 text-[10px] uppercase tracking-wider font-semibold mb-0.5">Viewing as</p>
+          <p className="text-amber-400 text-[12px] uppercase tracking-wider font-semibold mb-0.5">Viewing as</p>
           <p className="text-amber-300 text-[12px] font-medium truncate mb-1.5">{impersonating.label}</p>
           <Link
             href="/api/admin/impersonate"
-            className="text-amber-400/60 hover:text-amber-400 text-[11px] transition-colors"
+            className="text-amber-400/60 hover:text-amber-400 text-[15px] transition-colors"
           >
             ← Exit to admin
           </Link>
@@ -164,10 +164,10 @@ export default function Sidebar({
             <Link
               key={href}
               href={href}
-              className={`flex items-center justify-between gap-3 px-3 py-2 rounded-lg text-[13px] font-medium transition-colors ${
+              className={`flex items-center justify-between gap-3 px-3 py-2 rounded-lg text-[15px] font-medium transition-colors ${
                 active
                   ? "bg-[#FF2D1A]/10 text-[#FF2D1A]"
-                  : "text-[#666] hover:text-[#ccc] hover:bg-[#141414]"
+                  : "text-[#aaa] hover:text-[#ccc] hover:bg-[#242424]"
               }`}
             >
               <span className="flex items-center gap-2.5">
@@ -175,7 +175,7 @@ export default function Sidebar({
                 {navLabel}
               </span>
               {showBadge && (
-                <span className="bg-[#FF2D1A] text-white text-[10px] font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+                <span className="bg-[#FF2D1A] text-white text-[12px] font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
                   {pendingApprovals}
                 </span>
               )}
@@ -187,10 +187,10 @@ export default function Sidebar({
         {role === "client" && (
           <Link
             href="/dashboard/settings"
-            className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] font-medium transition-colors ${
+            className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-[15px] font-medium transition-colors ${
               isActive("/dashboard/settings")
                 ? "bg-[#FF2D1A]/10 text-[#FF2D1A]"
-                : "text-[#666] hover:text-[#ccc] hover:bg-[#141414]"
+                : "text-[#aaa] hover:text-[#ccc] hover:bg-[#242424]"
             }`}
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -203,8 +203,8 @@ export default function Sidebar({
 
         {/* Admin section — superadmin only, hidden while impersonating */}
         {role === "superadmin" && !impersonating && (
-          <div className="pt-4 mt-2 border-t border-[#1a1a1a]">
-            <p className="text-[#2a2a2a] text-[10px] uppercase tracking-wider font-medium px-3 mb-1.5">
+          <div className="pt-4 mt-2 border-t border-[#3a3a3a]">
+            <p className="text-[#2a2a2a] text-[12px] uppercase tracking-wider font-medium px-3 mb-1.5">
               Admin
             </p>
             {ADMIN_NAV.map(({ href, label: navLabel, icon }) => {
@@ -213,10 +213,10 @@ export default function Sidebar({
                 <Link
                   key={href}
                   href={href}
-                  className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] font-medium transition-colors ${
+                  className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-[15px] font-medium transition-colors ${
                     active
                       ? "bg-[#FF2D1A]/10 text-[#FF2D1A]"
-                      : "text-[#666] hover:text-[#ccc] hover:bg-[#141414]"
+                      : "text-[#aaa] hover:text-[#ccc] hover:bg-[#242424]"
                   }`}
                 >
                   {icon}
@@ -229,13 +229,13 @@ export default function Sidebar({
       </nav>
 
       {/* Footer */}
-      <div className="border-t border-[#1a1a1a] pt-4 mt-4 space-y-1">
-        <p className="text-[#3a3a3a] text-[11px] px-3 mb-2 uppercase tracking-wider font-medium truncate">
+      <div className="border-t border-[#3a3a3a] pt-4 mt-4 space-y-1">
+        <p className="text-[#666] text-[15px] px-3 mb-2 uppercase tracking-wider font-medium truncate">
           {label ?? "Account"}
         </p>
         <button
           onClick={() => signOut({ callbackUrl: "/login" })}
-          className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-[#555] hover:text-[#ccc] hover:bg-[#141414] transition-colors"
+          className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[15px] text-[#999] hover:text-[#ccc] hover:bg-[#242424] transition-colors"
         >
           <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
             <path d="M5.5 1H2a1 1 0 00-1 1v11a1 1 0 001 1h3.5M10 10.5l3.5-3L10 4M13.5 7.5H5.5" />
