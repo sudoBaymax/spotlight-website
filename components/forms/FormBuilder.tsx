@@ -348,7 +348,7 @@ export default function FormBuilder({ initialForm }: { initialForm: Form }) {
   const addField = useCallback((type: FieldType) => {
     const field = newField(type);
     setConfig((c) => ({ ...c, fields: [...c.fields, field] }));
-    setExpandedFields((s) => new Set([...s, field.id]));
+    setExpandedFields((s) => { const n = new Set(s); n.add(field.id); return n; });
     setShowAddMenu(false);
     dirty();
   }, [dirty]);
